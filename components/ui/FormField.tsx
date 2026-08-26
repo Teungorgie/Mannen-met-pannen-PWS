@@ -32,7 +32,7 @@ const inputClasses =
   "w-full rounded-lg border border-olive-dark/15 bg-cream-soft px-4 py-2.5 text-[15px] text-bark placeholder:text-bark/40 focus:border-terracotta focus:outline-none transition-colors";
 
 type TextFieldProps = InputHTMLAttributes<HTMLInputElement> &
-  Omit<FieldWrapperProps, "children"> & { wrapperClassName?: string };
+  Omit<FieldWrapperProps, "children" | "htmlFor"> & { wrapperClassName?: string };
 
 export function TextField({ label, error, required, hint, id, wrapperClassName, className, ...rest }: TextFieldProps) {
   return (
@@ -49,7 +49,7 @@ export function TextField({ label, error, required, hint, id, wrapperClassName, 
 }
 
 type SelectFieldProps = SelectHTMLAttributes<HTMLSelectElement> &
-  Omit<FieldWrapperProps, "children"> & { children: ReactNode; wrapperClassName?: string };
+  Omit<FieldWrapperProps, "children" | "htmlFor"> & { children: ReactNode; wrapperClassName?: string };
 
 export function SelectField({ label, error, required, hint, id, children, wrapperClassName, ...rest }: SelectFieldProps) {
   return (
@@ -62,7 +62,7 @@ export function SelectField({ label, error, required, hint, id, children, wrappe
 }
 
 type TextareaFieldProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
-  Omit<FieldWrapperProps, "children"> & { wrapperClassName?: string };
+  Omit<FieldWrapperProps, "children" | "htmlFor"> & { wrapperClassName?: string };
 
 export function TextareaField({ label, error, required, hint, id, wrapperClassName, ...rest }: TextareaFieldProps) {
   return (
