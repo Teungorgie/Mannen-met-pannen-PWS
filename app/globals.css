@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream text-bark font-body antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-olive-dark;
+  }
+
+  ::selection {
+    @apply bg-terracotta/20 text-bark;
+  }
+
+  /* Duidelijke focus-states voor toetsenbordgebruikers */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid #c1603d;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer utilities {
+  .section-padding {
+    @apply px-6 sm:px-10 lg:px-16;
+  }
+
+  .container-max {
+    @apply mx-auto max-w-6xl;
+  }
+
+  /* Zachte, terugkerende accent-curve die de boog in het logo echoot */
+  .arc-underline {
+    position: relative;
+  }
+  .arc-underline::after {
+    content: "";
+    position: absolute;
+    left: 4%;
+    right: 4%;
+    bottom: -0.35em;
+    height: 10px;
+    background: none;
+    border-bottom: 3px solid #c1603d;
+    border-radius: 50%;
+    transform: scaleY(0.6);
+    opacity: 0.75;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
