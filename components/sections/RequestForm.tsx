@@ -25,25 +25,19 @@ const EMPTY_FORM: RequestFormData = {
 };
 
 /**
- * Verstuurt de aanvraag naar een backend.
- *
- * Er is nog geen backend gekoppeld. Kies er later één en vervang de inhoud
- * van deze functie — de rest van het formulier hoeft dan niet aangepast
- * te worden. Zie README.md voor voorbeelden (Formspree, Resend, Supabase).
+ * Verstuurt de aanvraag naar Formspree.
+ * Verzendingen komen binnen op mannenmetpannen2026@gmail.com.
  */
 async function submitRequest(data: RequestFormData): Promise<void> {
-  // Voorbeeld voor Formspree:
-  // await fetch("https://formspree.io/f/JOUW_FORM_ID", {
-  //   method: "POST",
-  //   headers: { "Content-Type": "application/json", Accept: "application/json" },
-  //   body: JSON.stringify(data),
-  // });
+  const response = await fetch("https://formspree.io/f/xqpkldje", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(data),
+  });
 
-  // Zolang er geen backend is gekoppeld, simuleren we een verzending zodat
-  // de front-end getest kan worden zonder dat er echt iets verstuurd wordt.
-  await new Promise((resolve) => setTimeout(resolve, 700));
-  // eslint-disable-next-line no-console
-  console.info("Aanvraag (nog niet echt verstuurd, backend ontbreekt nog):", data);
+  if (!response.ok) {
+    throw new Error("Formspree submission failed");
+  }
 }
 
 export default function RequestForm() {
@@ -225,7 +219,7 @@ export default function RequestForm() {
           />
           <TextField
             id="allergies"
-            label="Allergieën"
+            label="AllergieÃ«n"
             value={data.allergies}
             onChange={(e) => update("allergies", e.target.value)}
           />
@@ -243,7 +237,7 @@ export default function RequestForm() {
         <legend className="mb-1 text-xs font-semibold uppercase tracking-wide text-terracotta">Bericht</legend>
         <TextareaField
           id="message"
-          label="Vertel ons iets over jullie avond…"
+          label="Vertel ons iets over jullie avondâ€¦"
           value={data.message}
           onChange={(e) => update("message", e.target.value)}
         />
@@ -256,8 +250,9 @@ export default function RequestForm() {
       )}
 
       <Button type="submit" variant="primary" disabled={status === "submitting"} className="w-full sm:w-auto">
-        {status === "submitting" ? "Bezig met versturen…" : "Aanvraag versturen"}
+        {status === "submitting" ? "Bezig met versturenâ€¦" : "Aanvraag versturen"}
       </Button>
     </form>
   );
 }
+
