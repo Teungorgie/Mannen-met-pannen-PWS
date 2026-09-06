@@ -1,7 +1,13 @@
+import Image from "next/image";
+
 type Props = {
   label?: string;
   aspect?: "square" | "portrait" | "landscape" | "wide";
   className?: string;
+  /** Pad naar de echte foto, bijv. "/images/Foto bord.jpg". Laat leeg voor de placeholder. */
+  src?: string;
+  /** Verplicht zodra 'src' is ingevuld â€” beschrijf wat er op de foto te zien is. */
+  alt?: string;
 };
 
 const aspectClasses: Record<NonNullable<Props["aspect"]>, string> = {
@@ -12,11 +18,33 @@ const aspectClasses: Record<NonNullable<Props["aspect"]>, string> = {
 };
 
 /**
- * Plek voor een toekomstige foto. Vervang later door een <Image /> of <img>
- * op dezelfde plek in de code. De opzet houdt rekening met de juiste
- * verhouding, zodat de lay-out niet verspringt zodra er een foto in komt.
+ * Plek voor een foto. Zolang er geen 'src' is opgegeven, toont dit component
+ * een placeholder met de juiste verhouding zodat de lay-out niet verspringt.
+ * Zodra je een 'src' meegeeft, toont het de echte foto op exact dezelfde plek.
  */
-export default function ImagePlaceholder({ label = "Foto volgt", aspect = "landscape", className = "" }: Props) {
+export default function ImagePlaceholder({
+  label = "Foto volgt",
+  aspect = "landscape",
+  className = "",
+  src,
+  alt,
+}: Props) {
+  if (src) {
+    return (
+      <div
+        className={`relative overflow-hidden rounded-lg ${aspectClasses[aspect]} w-full ${className}`}
+      >
+        <Image
+          src={src}
+          alt={alt ?? label}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+      </div>
+    );
+  }
+
   return (
     <div
       className={`relative flex ${aspectClasses[aspect]} w-full items-center justify-center overflow-hidden rounded-lg border border-dashed border-olive/30 bg-[linear-gradient(135deg,#EFE7D4_25%,#F7F2E7_25%,#F7F2E7_50%,#EFE7D4_50%,#EFE7D4_75%,#F7F2E7_75%,#F7F2E7)] bg-[length:24px_24px] ${className}`}
