@@ -20,10 +20,14 @@ export default function OverOnsPage() {
           </p>
         </div>
       </section>
-
       <section className="section-padding pb-20">
         <div className="container-max grid items-center gap-10 lg:grid-cols-2">
-          <ImagePlaceholder label={`Foto: ${BUSINESS.owners}`} aspect="landscape" />
+          <ImagePlaceholder
+            label={`Foto: ${BUSINESS.owners}`}
+            aspect="landscape"
+            src="/images/foto padel.jpg"
+            alt={`${BUSINESS.owners}, de mannen achter Mannen met Pannen`}
+          />
           <div className="flex flex-col gap-4">
             <h2 className="text-3xl">Waarom Mannen met Pannen</h2>
             <p className="text-bark/75">
@@ -33,19 +37,18 @@ export default function OverOnsPage() {
             </p>
             <p className="text-bark/75">
               Geen chique poespas, geen ingewikkelde kaart. Gewoon een goed doordacht menu, verse
-              ingrediënten en twee mensen die het leuk vinden om voor een volle tafel te koken.
+              ingrediÃ«nten en twee mensen die het leuk vinden om voor een volle tafel te koken.
             </p>
           </div>
         </div>
       </section>
-
       <section className="section-padding pb-24">
         <div className="container-max grid gap-6 sm:grid-cols-2">
           <div className="rounded-xl border border-olive-dark/10 bg-cream-soft p-8">
             <h3 className="text-2xl">Hoe het begon</h3>
             <p className="mt-3 text-bark/70">
               Mannen met Pannen is ontstaan uit een simpel idee: waarom zou je uit eten gaan, als er
-              thuis net zo goed — en veel gezelliger — voor je gekookt kan worden?
+              thuis net zo goed â€” en veel gezelliger â€” voor je gekookt kan worden?
             </p>
           </div>
           <div className="rounded-xl border border-olive-dark/10 bg-cream-soft p-8">
@@ -57,8 +60,8 @@ export default function OverOnsPage() {
           </div>
         </div>
       </section>
-
       <CTA title="Zin om kennis te maken?" text="Vertel ons over jullie avond, dan nemen we snel contact op." />
     </>
   );
 }
+
